@@ -1,3 +1,5 @@
+![oh-my-skills cover](assets/oh-my-skills-cover.png)
+
 # oh-my-skills
 
 `oh-my-skills` 是我会持续更新维护的个人 Agent skills 收藏仓库。
@@ -124,4 +126,3 @@ cp -R skills/engineered-vibe-coding /Users/anhuike/.codex/skills/
 - validation failure 是 blocker；
 - review evidence 必须可见；
 - 交付后代码库应该比接手时更健康。
-

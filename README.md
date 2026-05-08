@@ -1,3 +1,5 @@
+![oh-my-skills cover](assets/oh-my-skills-cover.png)
+
 # oh-my-skills
 
 `oh-my-skills` is my continuously maintained collection of agent skills.
@@ -124,4 +126,3 @@ For coding work, that means:
 - treat validation failures as blockers;
 - make review evidence visible;
 - leave the codebase healthier than it was found.
-
