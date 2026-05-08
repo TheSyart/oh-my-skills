@@ -1,0 +1,13 @@
+{
+  "name": "oh-my-skills",
+  "description": "A personal collection of agent skills.",
+  "skills": [
+    {
+      "name": "engineered-vibe-coding",
+      "path": "skills/engineered-vibe-coding",
+      "description": "Agent-Team-first engineering workflow skill for structured coding, planning, checkpoints, validation, review evidence, and anti-spaghetti gates.",
+      "status": "draft"
+    }
+  ]
+}
+

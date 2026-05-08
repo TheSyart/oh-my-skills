@@ -1,0 +1,4 @@
+interface:
+  display_name: "Engineered Vibe Coding"
+  short_description: "Structured coding with planning, gates, review"
+  default_prompt: "Use $engineered-vibe-coding to plan and implement this development task with risk-based workflow, atomic tasks, validation, and code quality review."
