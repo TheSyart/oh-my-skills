@@ -7,7 +7,12 @@
       "path": "skills/engineered-vibe-coding",
       "description": "Agent-Team-first engineering workflow skill for structured coding, planning, checkpoints, validation, review evidence, and anti-spaghetti gates.",
       "status": "draft"
+    },
+    {
+      "name": "ai-video-evaluator",
+      "path": "skills/ai-video-evaluator",
+      "description": "Short-video parsing, transcription, evidence capture, and AI video quality evaluation workflow for Douyin, Kuaishou, Xiaohongshu, and Bilibili.",
+      "status": "draft"
     }
   ]
 }
-

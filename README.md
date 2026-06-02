@@ -6,7 +6,7 @@
 
 This repository is where I turn useful agent workflows into reusable skill packages: not one-off prompts, not scattered notes, but small operating systems for agent work. Each skill is expected to have clear triggers, hard rules, references, examples, validation paths, and enough documentation for both humans and agents to understand how it should be used.
 
-The collection is starting with one core skill, `engineered-vibe-coding`, and will keep evolving as I refine how agents plan, build, review, and maintain real projects.
+The collection started with `engineered-vibe-coding` and will keep evolving as I refine useful agent workflows across coding, media analysis, and other repeatable work.
 
 ## Why This Exists
 
@@ -20,11 +20,12 @@ AI coding can move quickly, but speed is not the hard part anymore. The hard par
 - Keep high-risk work from becoming rushed, unreviewed code.
 - Improve skills over time based on real usage.
 
-## Current Skill
+## Current Skills
 
 | Skill | Status | Description |
 | --- | --- | --- |
 | [`engineered-vibe-coding`](skills/engineered-vibe-coding) | Draft / actively maintained | Agent-Team-first engineering workflow skill for structured coding, requirement and architecture planning, module and atomic task breakdown, checkpoints, validation, role review evidence, and anti-spaghetti gates. |
+| [`ai-video-evaluator`](skills/ai-video-evaluator) | Draft / actively maintained | Short-video parsing, transcription, evidence capture, and AI video quality evaluation workflow for Douyin, Kuaishou, Xiaohongshu, and Bilibili. |
 
 ### `engineered-vibe-coding`
 
@@ -46,6 +47,21 @@ It asks the agent to:
 
 In short: small tasks stay light, but serious work gets real engineering structure.
 
+### `ai-video-evaluator`
+
+`ai-video-evaluator` is designed for short-video analysis workflows where an agent needs to inspect both transcript and visual evidence before judging content quality.
+
+It asks the agent to:
+
+- parse Douyin, Kuaishou, Xiaohongshu, and Bilibili share links;
+- transcribe video audio through DashScope;
+- normalize common ASR mistakes before evaluation;
+- capture evidence frames with `ffmpeg` at transcript-linked timestamps;
+- evaluate knowledge value, concept accuracy, evidence quality, information density, anxiety marketing, and actionability;
+- generate a single-page HTML report using the built-in magazine-style template and platform/rating assets.
+
+In short: video criticism should be evidence-based, not just a vibe check.
+
 ## Repository Layout
 
 ```text
@@ -54,18 +70,28 @@ oh-my-skills/
 ├── README.zh-CN.md
 ├── skills.json
 └── skills/
-    └── engineered-vibe-coding/
+    ├── engineered-vibe-coding/
+    │   ├── SKILL.md
+    │   ├── README.md
+    │   ├── README.zh-CN.md
+    │   ├── agents/
+    │   │   └── openai.yaml
+    │   └── references/
+    │       ├── workflow.md
+    │       ├── roles.md
+    │       ├── dev-plan-template.md
+    │       ├── review-checklists.md
+    │       └── examples/
+    └── ai-video-evaluator/
         ├── SKILL.md
-        ├── README.md
-        ├── README.zh-CN.md
         ├── agents/
         │   └── openai.yaml
-        └── references/
-            ├── workflow.md
-            ├── roles.md
-            ├── dev-plan-template.md
-            ├── review-checklists.md
-            └── examples/
+        ├── assets/
+        │   ├── platform-logos/
+        │   ├── rating-badges/
+        │   ├── transcript_glossary.json
+        │   └── video_eval_report_template.html
+        └── scripts/
 ```
 
 ## How I Maintain This
@@ -88,6 +114,7 @@ Validate the current Codex-compatible skill with:
 
 ```bash
 uv run --with pyyaml python /Users/anhuike/.codex/skills/.system/skill-creator/scripts/quick_validate.py skills/engineered-vibe-coding
+uv run --with pyyaml python /Users/anhuike/.codex/skills/.system/skill-creator/scripts/quick_validate.py skills/ai-video-evaluator
 ```
 
 Expected result:
@@ -98,10 +125,11 @@ Skill is valid!
 
 ## Local Installation
 
-To install `engineered-vibe-coding` into Codex locally:
+To install a skill into Codex locally:
 
 ```bash
 cp -R skills/engineered-vibe-coding /Users/anhuike/.codex/skills/
+cp -R skills/ai-video-evaluator /Users/anhuike/.codex/skills/
 ```
 
 The repository keeps the skill in draft form first. Install it only when you want Codex to discover it automatically.

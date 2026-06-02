@@ -6,7 +6,7 @@
 
 这个仓库不是用来堆一次性 prompt 的，也不是零散笔记。它的目标是把真正有用的 Agent 工作流沉淀成可复用的 skill package：有明确触发条件、硬规则、references、examples、验证方式，也有给人看的说明文档。
 
-当前从 `engineered-vibe-coding` 开始，后续会随着真实使用持续打磨，逐步沉淀更多适合长期复用的 Agent 工作流。
+当前从 `engineered-vibe-coding` 起步，后续会随着真实使用持续打磨，逐步沉淀更多适合长期复用的 Agent 工作流。
 
 ## 为什么做这个仓库
 
@@ -25,6 +25,7 @@ AI 写代码已经很快了，但真正难的不是“快”，而是在需求�
 | Skill | 状态 | 说明 |
 | --- | --- | --- |
 | [`engineered-vibe-coding`](skills/engineered-vibe-coding) | 草稿 / 持续维护中 | Agent-Team-first 工程化编码 workflow skill，用于需求规划、架构规划、模块拆分、atomic task 细分、checkpoint、验证、角色审核证据和反屎山闸门。 |
+| [`ai-video-evaluator`](skills/ai-video-evaluator) | 草稿 / 持续维护中 | 面向抖音、快手、小红书和 B 站的短视频解析、转录、证据截图和 AI 视频质量评估 workflow skill。 |
 
 ### `engineered-vibe-coding`
 
@@ -46,6 +47,21 @@ AI 写代码已经很快了，但真正难的不是“快”，而是在需求�
 
 简单说：小任务保持轻量；中大型和高风险任务必须进入真正的工程流程。
 
+### `ai-video-evaluator`
+
+`ai-video-evaluator` 面向短视频分析工作流。它要求 Agent 在评价内容质量前，同时检查字幕、标题、话题和画面证据，而不是只凭观感下判断。
+
+它要求 Agent：
+
+- 解析抖音、快手、小红书和 B 站分享链接；
+- 通过 DashScope 将视频语音转成带时间戳的字幕；
+- 先规范化常见 ASR 专名误识别，再进入评估；
+- 根据字幕时间点用 `ffmpeg` 抽取证据截图；
+- 从知识价值、概念准确性、证据质量、信息密度、焦虑营销和可操作性六项打分；
+- 使用内置杂志评审风 HTML 模板、平台 logo 和评分章生成单页报告。
+
+简单说：视频锐评必须有证据锚点，不能只靠感觉。
+
 ## 仓库结构
 
 ```text
@@ -54,18 +70,28 @@ oh-my-skills/
 ├── README.zh-CN.md
 ├── skills.json
 └── skills/
-    └── engineered-vibe-coding/
+    ├── engineered-vibe-coding/
+    │   ├── SKILL.md
+    │   ├── README.md
+    │   ├── README.zh-CN.md
+    │   ├── agents/
+    │   │   └── openai.yaml
+    │   └── references/
+    │       ├── workflow.md
+    │       ├── roles.md
+    │       ├── dev-plan-template.md
+    │       ├── review-checklists.md
+    │       └── examples/
+    └── ai-video-evaluator/
         ├── SKILL.md
-        ├── README.md
-        ├── README.zh-CN.md
         ├── agents/
         │   └── openai.yaml
-        └── references/
-            ├── workflow.md
-            ├── roles.md
-            ├── dev-plan-template.md
-            ├── review-checklists.md
-            └── examples/
+        ├── assets/
+        │   ├── platform-logos/
+        │   ├── rating-badges/
+        │   ├── transcript_glossary.json
+        │   └── video_eval_report_template.html
+        └── scripts/
 ```
 
 ## 维护方式
@@ -88,6 +114,7 @@ oh-my-skills/
 
 ```bash
 uv run --with pyyaml python /Users/anhuike/.codex/skills/.system/skill-creator/scripts/quick_validate.py skills/engineered-vibe-coding
+uv run --with pyyaml python /Users/anhuike/.codex/skills/.system/skill-creator/scripts/quick_validate.py skills/ai-video-evaluator
 ```
 
 期望结果：
@@ -98,10 +125,11 @@ Skill is valid!
 
 ## 本地安装
 
-如果要把 `engineered-vibe-coding` 安装到本地 Codex：
+如果要把 skill 安装到本地 Codex：
 
 ```bash
 cp -R skills/engineered-vibe-coding /Users/anhuike/.codex/skills/
+cp -R skills/ai-video-evaluator /Users/anhuike/.codex/skills/
 ```
 
 仓库里优先保留草稿形态。只有当你希望 Codex 自动发现它时，再安装到 Codex skills 目录。
