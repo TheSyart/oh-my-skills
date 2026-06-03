@@ -1,4 +1,0 @@
-interface:
-  display_name: "AI Video Evaluator"
-  short_description: "Evaluate AI short videos for quality, anxiety marketing, and concept errors"
-  default_prompt: "Use $ai-video-evaluator to parse this video link, transcribe it, capture evidence frames, and generate an HTML quality evaluation report."

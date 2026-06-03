@@ -1,0 +1,5 @@
+interface:
+  display_name: "Video Quality Analysis"
+  short_description: "Detect low-quality AI anxiety videos"
+  brand_color: "#8F1D16"
+  default_prompt: "Use $video-quality-analysis to parse this short-video link, transcribe it, capture evidence frames, and generate an HTML quality report."

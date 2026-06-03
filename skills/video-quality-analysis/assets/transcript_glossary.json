@@ -1,0 +1,30 @@
+{
+  "literal": [
+    ["open air", "OpenAI"],
+    ["Open ai", "OpenAI"],
+    ["open ai", "OpenAI"],
+    ["Chatgpt", "ChatGPT"],
+    ["chat gpt", "ChatGPT"],
+    ["cloud code", "Claude Code"],
+    ["cloucode", "Claude Code"],
+    ["cloud点md", "CLAUDE.md"],
+    ["claude点md", "CLAUDE.md"],
+    ["克劳德 code", "Claude Code"],
+    ["安索ropic", "Anthropic"],
+    ["anthro pic", "Anthropic"],
+    ["midjourney", "Midjourney"],
+    ["stable diffusion", "Stable Diffusion"],
+    ["Cursor", "Cursor"],
+    ["cursor", "Cursor"],
+    ["codex", "Codex"],
+    ["sdk", "SDK"],
+    ["api", "API"]
+  ],
+  "regex": [
+    ["\\bopen\\s*ai\\b", "OpenAI"],
+    ["\\bchat\\s*gpt\\b", "ChatGPT"],
+    ["\\bclaude\\s*code\\b", "Claude Code"],
+    ["\\btool\\s*use\\b", "tool use"],
+    ["\\btool\\s*result\\b", "tool result"]
+  ]
+}
